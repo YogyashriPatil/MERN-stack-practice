@@ -1,23 +1,29 @@
-import express from "express"
-import dotenv from "dotenv"
+import express from "express";
+import dotenv from "dotenv";
 import cors from "cors"
-
 dotenv.config()
-const app=express(); //initialize
 
-const port=process.env.PORT ; //run on port number eg. 3002,3000,5173,8000,8080
+const app =express();
+const port =process.env.PORT;
 
-app.get("/",(req,res) => {
-    res.send("Hello world ! ");
-});
 app.use(cors({
-    origin:"http://localhost:3000",
-    methods:['GET','POST'],
-    credentials:true
+    origin:"http://127.0.0.1:3000",
+    methods:['GET','POST','DELETE','OPTIONS'],
+    allowedHeaders:['Content-Type','Authorization'],
+    credential:true
 }))
+
 app.use(express.json())
-app.unsubscribe(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended:true}))
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.get("/login", (req,res) => {
+    res.send("Login to website")
+})
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-}); 
+    console.log(`Server is runing on ${port}`);
+})
