@@ -11,7 +11,7 @@ const PORT=3000;
 var user =[{
         name:"xyz",
         kidneys: [{
-            healthy:true
+            healthy:false
         }]
 }];
 app.use(express.json())
@@ -24,7 +24,7 @@ app.get("/", (req,res) => {
             numberofhealthkidneys=numberofhealthkidneys+1;
         }
     }
-    const numberofunhealthykidney=numberofkidneys-1;
+    const numberofunhealthykidney=numberofkidneys-numberofhealthkidneys;
     res.json({
         numberofkidneys,
         numberofhealthkidneys,
@@ -56,6 +56,32 @@ app.delete("/", (req,res) => {
 
     //you should return a 411
     //only if atleast one unhealthy is there do this, else return 411
+    
+    if(isThereatleastUnhealthy()){
+        const newKidneys=[];
+        for(let i=0;i<user[0].kidneys.length;i++)
+        {
+            if(user[0].kidneys[i].healthy){
+                newKidneys.push({
+                    healthy:true
+                })
+            }
+        }
+        user[0].kidneys=newKidneys;
+        res.json({
+            msg:"done"
+        })
+    }
+    else {
+        res.status(411).json({
+            msg:"You have no bad kidneys"
+        });
+    }
+})
+
+
+function isThereatleastUnhealthy()
+{
     let atleastunhealthykidney=false;
     for(let i=0;i<user[0].kidneys.length;i++)
     {
@@ -63,21 +89,7 @@ app.delete("/", (req,res) => {
             atleastunhealthykidney=true;
         }
     }
-    const newKidneys=[];
-    for(let i=0;i<user[0].kidneys.length;i++)
-    {
-        if(user[i].kidneys[i].healthy){
-            newKidneys.push({
-                healthy:true
-            })
-        }
-    }
-    user[0].kidneys=newKidneys;
-    res.json({
-        msg:"done"
-    })
-})
-
+}
 app.listen(PORT, (req,res) => {
     console.log(`Listening on ${PORT}`);
 })
