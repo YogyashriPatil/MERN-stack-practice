@@ -1,0 +1,3 @@
+1. create a simple http server in c from scratch
+2. Create a todo app where user store data in a file
+3. create a rust/golang/java http server

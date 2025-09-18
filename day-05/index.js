@@ -8,11 +8,13 @@
 
 //rest API, http
 const express=require("express");
-
+const bodyParser = require("body-parser");
 const PORT=3000;
 
 const app=express();
 
+//middleware
+app.use(bodyParser.json())
 //fs -> filesystem -read file on system, write to files on read
 
 //create a todo app that lets users store todos on the server
@@ -21,13 +23,20 @@ const app=express();
 //create an http server in golang using the gurrila framework
 //spring boot java
 
-app.get("/route-handler",function(req,res) {
-    //headers,body,query parameters
-    // do machine learning model
-    // res.send("hello world");
-    res.json({
-        name : "yogyashri",
-        age: 21
+// app.get("/route-handler",function(req,res) {
+//     //headers,body,query parameters
+//     // do machine learning model
+//     // res.send("hello world");
+//     res.json({
+//         name : "yogyashri",
+//         age: 21
+//     })
+// })
+
+app.post("/conversations",(req,res) => {
+    console.log(req.headers);
+    res.send({
+        msg:"2+4 = 6"
     })
 })
 
