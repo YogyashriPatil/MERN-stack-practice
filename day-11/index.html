@@ -6,28 +6,30 @@
     <body>
         <script>
             // DOM
-            function getAnimaldata(){
-                fetch("https://fakerapi.it/api/v1/persons")
-                .then(function(response) {
-                    response.json()
-                    .then(function(finaldata) {
-                        console.log(finaldata);
-                    })
-                }, {
-                    Headers:{
-                        ""
-                    }
-                })
-
-                
-            }
-
-            // async function getAnimaldata(){
-            //     const response = fetch("https://fakerapi.it/api/v1/persons")
-            //     const finaldata= await response.json()
-            //     console.log(finaldata);
+            // function getAnimaldata(){
+            //     fetch("https://fakerapi.it/api/v1/persons")
+            //     .then(function(response) {
+            //         response.json()
+            //         .then(function(finaldata) {
+            //             console.log(finaldata);
+            //         })
+            //     })
             // }
+
+            async function getAnimaldata(){
+                const response =await fetch("https://fakerapi.it/api/v1/persons" 
+                // , {
+                //     Headers:{
+                //        "Authorization":localStorage.read("token")
+                //     }}
+                )
+                const finaldata= await response.json()
+                document.getElementById("Userdata").innerHTML=JSON.stringify(finaldata)
+                console.log(finaldata);
+            }
         </script>
-        <button onclick="getAnimaldata()">Get the user information</button>
+        <div id="Userdata">
+            <button onclick="getAnimaldata()">Get the user information</button>
+        </div>
     </body>
 </html>
