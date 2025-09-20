@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Fetch api </title>
+    </head>
+
+    <body>
+        <script>
+            //DOM
+            // function getAnimaldata(){
+            //     fetch("https://fakerapi.it/api/v1/persons")
+            //     .then(function(response) {
+            //         response.json()
+            //         .then(function(finaldata) {
+            //             console.log(finaldata);
+            //         })
+            //     })
+            // }
+
+            async function getAnimaldata(){
+                const response = fetch("https://fakerapi.it/api/v1/persons")
+                const finaldata= await response.json()
+                console.log(finaldata);
+            }
+        </script>
+        <button onclick="getAnimaldata()">Get the user information</button>
+    </body>
+</html>
