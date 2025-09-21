@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let globalId=0;
+        function markAsDone(todo){
+            const parent = document.getElementById(todo);
+            parent.children[2].innerHTML = "Done !"
+        }
+        function createChild(title,description,id) {
+            const child=document.createElement("div");
+            const firstGrandParent=document.createElement("div");
+            firstGrandParent.innerHTML=title
+
+            const SecondGrandParent=document.createElement("div");
+            SecondGrandParent.innerHTML=description
+
+            const ThirdGrandParent=document.createElement("button");
+            ThirdGrandParent.innerHTML="Mark as complete"
+            ThirdGrandParent.setAttribute("onclick",`markAsDone(${id})`)
+            child.appendChild(firstGrandParent);
+            child.appendChild(SecondGrandParent);
+            child.appendChild(ThirdGrandParent);
+            child.setAttribute("id",id)
+            return child;
+        }
+        function addtodo(){
+            const title= document.getElementById("title").value;
+            const description= document.getElementById("description").value;
+
+            const parent=document.getElementById("container");
+            parent.appendChild(createChild(title,description,globalId++))
+            // const outerDiv = document.createElement("div");
+            // outerDiv.innerHTML=title
+            // document.getElementById("container").appendChild(outerDiv)
+            // document.getElementById("container").innerHTML= originalHtml + `<div>
+            //     <div> ${title} </div>
+            //     <div>${description} </div>
+            //     <button> Mark as completed </button>
+            //     </div>`
+        }
+    </script>
+    <div>
+        <input type="text" placeholder="title" id="title"></input> <br><br>
+        <input type="text" placeholder="Description" id="description"></input> <br><br>
+
+        <button onclick="addtodo()">Add todo</button>
+
+        <div id="container"></div>
+    </div>
+</body>
+</html>
