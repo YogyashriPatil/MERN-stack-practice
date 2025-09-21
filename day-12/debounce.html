@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>DOM</title>
+    </head>
+
+    <script>
+        // once
+        let timeout;
+        function debouncePopulate() {
+            // delay the call populateDiv until i've not been called for 100ms
+            // and i've been called atleast once
+
+            // how to you cancel a clock ?
+            // cleartimeout
+            clearTimeout(timeout)
+            timeout= setTimeout(function(){
+                sumcalculate()
+            },100)
+            // clearTimeout(timeout)
+        }   
+    
+        function sumcalculate(){
+            const a= document.getElementById("num1").value;
+            const b= document.getElementById("num2").value;
+           
+            // async call
+            // axios
+            fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+                .then(function(response){
+                    response.text()
+                        .then(function(ans) {
+                            console.log(ans);
+                            document.getElementById("finalSum").innerHTML=ans;
+
+                        })
+                });
+            // element.innerHTML= parseInt(a) + parseInt(b);
+        }
+
+        async function calculate2(){
+            const a= document.getElementById("num1").value;
+            const b= document.getElementById("num2").value;
+            const response = await   fetch("https://sum-server.100xdevs.com/sum?a=" + a + "&b=" + b)
+            const ans =await response.text();
+            document.getElementById("finalSum").innerHTML = ans;
+        }
+    </script>
+    <body>
+        <input type="text" name="" id="num1" placeholder="First number"></input><br><br>
+        <input type="text" name="" id="num2" placeholder="Second number"></input><br><br>
+
+        <button onclick="calculate2()">Calculate</button><br><br>
+
+        <div id="finalSum">
+            hi there
+        </div>
+    </body>
+</html>
