@@ -6,13 +6,13 @@ mongoose.connect('mongodb+srv://practice1:practice1@cluster0.q24qtpx.mongodb.net
 // Define schemas
 const AdminSchema = new mongoose.Schema({
     // Schema definition here
-    usernaem: String,
+    username: String,
     password:String
 });
 
 const UserSchema = new mongoose.Schema({
     // Schema definition here
-    usernaem: String,
+    username: String,
     password:String,
     purchasedCourses :[{
         type: mongoose.Schema.Types.ObjectId,
