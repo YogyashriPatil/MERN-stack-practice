@@ -18,10 +18,19 @@ function App() {
 
   return (
     <div>
-      <button onClick={onClickHandler}> Counter {count}</button>
-       
+        {/* <button onClick={onClickHandler}> Counter {count}</button> */}
+       <CustomButton count={count} setCount={setCount}></CustomButton>
     </div>   
   )
+}
+
+// component 
+function CustomButton(pros) {
+  function onClickHandler() 
+  {
+    pros.setCount(pros.count+1);
+  }
+  return <button onClick={onClickHandler}> Counter {pros.count} </button>
 }
 
 export default App
