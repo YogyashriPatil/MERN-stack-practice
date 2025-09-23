@@ -4,32 +4,47 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([{
+    title:"Go to gym",
+    description:"go to gym from 7-9",
+    completed:false
+  }, {
+    title:"Study DSA",
+    description:"Study DSA from 9-10",
+    completed:true
+  },
+  {
+    title:"Study DSA",
+    description:"Study DSA from 9-10",
+    completed:true
+  }]);
+
+  function addTodo() {
+    setTodos([...todos, {
+      title:"new todo",
+      description:"desc of new todo"
+    }])
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      {/* <Todo title={todos[0].title} description={todos[0].description} />
+      <Todo title={todos[1].title} description={todos[1].description} /> */}
+
+      <button onClick={addTodo}>Add a random todo</button>
+
+      {todos.map(function (todos) {
+        return <Todo title={todos.title} description={todos.description} />
+      })}
+      {JSON.stringify(todos)}
+    </div>
   )
 }
 
+function Todo(props) {
+  return <div>
+    <h1>{props.title}</h1>
+    <h2>{props.description}</h2>
+  </div>
+}
 export default App
