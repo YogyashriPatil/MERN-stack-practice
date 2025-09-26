@@ -1,29 +1,68 @@
 import React, { useState , Fragment} from 'react'
 import './App.css'
 
+let counter=4;
 function App() {
-  
-  const [title, setTitle] = useState("My name is harkirat")
-  function updateTitle(){
-    setTitle("My name is " + Math.random());
+  const [todos, setTodos] = useState([{
+    id:1,
+    title:"go to gym",
+    description:"go to gym today"
+  },
+  {
+    id:2,
+    title:"go to college",
+    description:"time pass"
+  },
+  {
+    id:3,
+    title:"lunch",
+    description:"dinner"
+  }])
+
+  function addTodo(){
+    setTodos([...todos, {
+      id: counter++,
+      title: Math.random(),
+      description: Math.random()
+    }])
+
+    // const newTodos = [];
+    // for(let i=0;i<todos.length; i++){
+    //   newTodos.push(todos[i]);
+    // }
+
+    // setTodos.push({
+    //   id:4,
+    //   title: Math.random(),
+    //   description: Math.random()
+    // })
+    // setTodos(newTodos)
   }
+  
   return (
     <div>
-      <button onClick={updateTitle}>Update the title </button>
-      <Header title={title}></Header>
-      <Header title="Yogyashri2"></Header>
-      <Header title="Yogyashri2"></Header>
-      <Header title="Yogyashri2"></Header>
-      <Header title="Yogyashri2"></Header>
-      <Header title="Yogyashri2"></Header>
+      <button onClick={addTodo}>Add a todo</button>
+     {todos.map(todo => <Todo key={todo.id} title={todo.title} description={todo.description} />)}
+     {/* {todos.map( function(todo){
+        <Todo title={todo.title} description={todo.description} />
+     })} */}
+
+     {/* <Todo title={todos[0].title} description={todos[0].description} /> */}
+     
     </div>
   )
 }
 
-const Header = React.memo(function Header({title}){
-    return <div>
+function Todo({title, description})
+{
+  return <div>
+    <h1>
       {title}
-    </div>
-})
+    </h1>
 
+    <h5>
+      {description}
+    </h5>
+  </div>
+}
 export default App
