@@ -1,18 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import axios from 'axios';
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://sum-server.100xdevs.com/todos")
+      .then(function(response) {
+        setTodos(response.data.todos)
+      })
+  })
 
   return (
     <>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        {todos.map(todo => <Todo title={title} description={description} />)}
     </>
   )
+}
+
+function Todo({title,description})
+{
+  return <div>
+    <h1> {title} </h1>
+  </div>
 }
 
 export default App
