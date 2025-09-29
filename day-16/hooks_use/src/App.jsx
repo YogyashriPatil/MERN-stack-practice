@@ -4,6 +4,7 @@ import './App.css'
 
 function App() {
 
+  const [selectedId, setselectedId] = useState(1);
   // const [todos, setTodos] = useState([]);
 
   // useEffect(() => {
@@ -15,7 +16,23 @@ function App() {
 
   return (
     <>
-      <GettodoId id={1} />
+      <button onClick={function() {
+        setselectedId(1)
+      }}>1</button>
+      <button onClick={function() {
+        setselectedId(2)
+      }}>2</button>
+      <button onClick={function() {
+        setselectedId(3)
+      }}>3</button>
+      <button onClick={function() {
+        setselectedId(4)
+      }}>4</button>
+      <button onClick={function() {
+        setselectedId(5)
+      }}>5</button>
+
+      <GettodoId id={setselectedId} />
         {/* {todos.map(todo => <Todo title={title} description={description} />)} */}
     </>
   )
@@ -28,11 +45,12 @@ function GettodoId({id})
   useEffect(() => {
      axios.get("https://sum-server.100xdevs.com/todos")
       .then(function(response) {
-       setTodos(response.data.todos)
+       setTodos(response.data.todo)
     })
-  })
+  }, [id]) //every time id change it run 
   //your effect here
   return <div>
+    Id: {id}
     <h1>
       {todo.title}
     </h1>
