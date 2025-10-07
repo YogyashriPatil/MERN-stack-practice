@@ -1,17 +1,34 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 function App() {
-  useEffect(function() {
-    alert("hello")
-  })
+
+  const [todos, settodos]=useState([])
+  useEffect( () => {
+    fetch("https://sum-server.100xdevs.com/todos")
+     .then(async function (res) {
+      const json=await res.json();
+      settodos(json);
+     })
+  },[])
 
   return (
     <div>
-      hi there
+      {todos.map(todo => <Todo title={todo.title} description={todo.description} />)}
     </div>
   )
 }
 
+function Todo({title,description}) {
+  <div>
+    <h1>
+      {title}
+    </h1>
+
+    <h4>
+      {description}
+    </h4>
+  </div>
+}
 // // function TextComponent() {
 // //   return <div>
 // //     hi there
