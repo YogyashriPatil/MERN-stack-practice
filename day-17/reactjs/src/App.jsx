@@ -39,9 +39,10 @@ function Todo({id}){
       .then(response => {
         settodo(response.data.todo)
       })
-  }, [])
+  }, [id])
 
   return <div>
+    id : {id}
     <h1>
       {todo.title}
     </h1>
