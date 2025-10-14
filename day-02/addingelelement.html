@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2{
+            font-size: 60px;
+            color: brown;
+        }
+        marquee {
+            background-color: aqua;
+            font-size: 20px;
+            color: darkcyan;
+        }
+        #input-todo {
+            width: 200px;
+            height: 40px;
+        }
+        #add-btn{
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h2>
+        Todo Application
+    </h2>
+    <marquee><b>Make a to-do is the best habit to better schedule</b></marquee>
+    <input id="input-todo" type="text" placeholder="Enter the to-do">
+    <button id="add-btn" onclick="addTodo()">Add todo </button>
+    <script>
+        function addTodo()
+        {
+            let ctr=0;
+            const inputEl=document.querySelector("input");
+            const value=inputEl.value
+
+            const newDiv=document.createElement("div")
+            newDiv.setAttribute("id","todo-"+ctr)
+            newDiv.innerHTML="<h2 id='todo-"+ctr+"'>"+value+"<h2><button id='todob-"+ctr+"' onclick='deleteTodo("+ctr+")'>Delete</button>"
+
+            document.querySelector("body").appendChild(newDiv)
+            ctr=ctr+1;
+        }
+        function deleteTodo(index){
+            alert("todo call")
+            const element=document.getElementById("todo-"+index);
+            element.parentNode.removeChild(element)
+            const element1=document.getElementById("todob-"+index);
+            element1.parentNode.removeChild(element1)
+        }
+    </script>
+</body>
+</html>

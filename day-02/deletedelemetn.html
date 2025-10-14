@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo list</h1>
+    <div id="todo-1">
+        <h2>Take a breakfast</h2>
+        <button onclick="deleteTodo(1)">Delete</button>    
+    </div>
+
+    <div id="todo-2">
+        <h2>Take a lunch</h2>
+        <button onclick="deleteTodo(2)">Delete</button>    
+    </div>
+
+    <div>
+        <input id="to-do" type="text" placeholder="Enter the todo"/>
+        <button id="addto-do " onclick="addTodo()">Add todo </button>
+    </div>
+
+    <script>
+        function deleteTodo(index){
+            const element=document.getElementById("todo-"+index);
+            element.parentNode.removeChild(element)
+        }
+    </script>
+</body>
+</html>
