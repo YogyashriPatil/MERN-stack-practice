@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use of state,component,and the render</title>
+
+    <style>
+        input{
+            width: 250px;
+            height: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: 40px;
+            margin-left: 450px;
+        }
+        #add-todo {
+            width: 100px;
+            height: 40px;
+            background-color: limegreen;
+        }
+
+        #container{
+            display: flex;
+
+        }
+        #todos{
+            display: flexbox;
+            width: 500px;
+            height: 500px;
+            padding: 30px;
+            background-color: aquamarine;
+            margin-left: 50px;
+        }
+        #todos-completed{
+            display: flexbox;
+            width: 500px;
+            height: 500px;
+            padding: 30px;
+            background-color: aquamarine;
+            margin-left: 100px;
+        }
+        button{
+            width: 90px;
+            height: 30px;
+            margin-left: 20px;
+            background-color: red;
+        }
+</style>
+
+</head>
+<body>
+    <input type="" />
+
+    <button id="add-todo" onclick="addTodo()"> Add Todo</button>
+
+
+    <div id="container">
+        <div>
+            <div id="todos"></div>
+        </div>
+        <br>
+        <div id="todos-completed"></div>
+    </div>
+
+    <script>
+        let todo=[]
+        function addTodo() {
+            todo.push({
+                title: document.querySelector("input").value
+            })
+            render();
+        }
+        function render() {
+            document.querySelector("#todos").innerHTML=""
+            let ctr=0;
+            for(let i=0;i<todo.length;i++)
+            {
+                
+                const todos=todo[i];
+                const div=document.createElement("div");
+                const h1=document.createElement("h1");
+                const button=document.createElement("button");
+                const button2=document.createElement("button");
+                button.innerHTML='Delete'
+                button.setAttribute='todod-'+ctr;
+                button2.innerHTML='Completed'
+                h1.innerHTML=todos.title;
+                div.append(h1)
+                div.append(button2)
+                div.append(button)
+                document.querySelector("#todos").appendChild(div)
+                ctr++;
+            }
+        }
+    </script>
+</body>
+</html>
