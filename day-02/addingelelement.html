@@ -29,8 +29,14 @@
         Todo Application
     </h2>
     <marquee><b>Make a to-do is the best habit to better schedule</b></marquee>
-    <input id="input-todo" type="text" placeholder="Enter the to-do">
-    <button id="add-btn" onclick="addTodo()">Add todo </button>
+        <input id="input-todo" type="text" placeholder="Enter the to-do">
+        <button id="add-btn" onclick="addTodo()">Add todo </button>
+    
+    <div id="completed-todo">
+
+
+
+    </div>
     <script>
         function addTodo()
         {
@@ -40,7 +46,7 @@
 
             const newDiv=document.createElement("div")
             newDiv.setAttribute("id","todo-"+ctr)
-            newDiv.innerHTML="<h2 id='todo-"+ctr+"'>"+value+"<h2><button id='todob-"+ctr+"' onclick='deleteTodo("+ctr+")'>Delete</button>"
+            newDiv.innerHTML="<h2 id='todo-"+ctr+"'>"+value+"<h2><button id='todob-"+ctr+"' onclick='deleteTodo("+ctr+")'>Delete</button> <button id='todoc-"+ctr+"' onclick='completed("+ctr+")'>Completed</button>"
 
             document.querySelector("body").appendChild(newDiv)
             ctr=ctr+1;
@@ -51,6 +57,13 @@
             element.parentNode.removeChild(element)
             const element1=document.getElementById("todob-"+index);
             element1.parentNode.removeChild(element1)
+        }
+        function completeTodo(index){
+            const newDiv=document.createElement("div")
+            newDiv.setAttribute("id","todo-"+ctr)
+            newDiv.innerHTML="<h2 id='todo-"+ctr+"'>"+value+"<h2>"
+            
+            document.querySelector("div").appendChild(newDiv)
         }
     </script>
 </body>
