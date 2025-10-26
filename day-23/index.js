@@ -34,10 +34,18 @@ app.post("/signin", function(req,res) {
     }
 
     if(foundUser) {
+        const token = generateToken();
+        foundUser.token=token;
         res.json({
             message:token
         })
     }
+    else {
+        res.status(403).send({
+            message:"Invalid username or password"
+        })
+    }
+    console.log(users)
     // const user = users.find(function(u) {
     //     if(u.username == username){
     //         return true;
@@ -56,10 +64,10 @@ app.post("/signup", function(req,res) {
         username: username,
         password: password
     })
-
     res.json({
         message : "your are signed in"
     })
+    console.log(users)
 });
 
 app.listen(3000, (req,res) => {
