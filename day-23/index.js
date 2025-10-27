@@ -18,7 +18,6 @@ function generateToken(){
     return token;
 }
 
-
 app.post("/signin", function(req,res) {
 
     const username = req.body.username;
@@ -55,7 +54,6 @@ app.post("/signin", function(req,res) {
     //     }
     // })
 });
-
 app.post("/signup", function(req,res) {
     const username = req.body.username;
     const password = req.body.password
@@ -69,7 +67,29 @@ app.post("/signup", function(req,res) {
     })
     console.log(users)
 });
+app.get("/me", function(req,res) {
+    const token= req.headers.token;
+    const foundUser=null;
 
+    for(let i=0;i<users.length;i++)
+    {
+        if(users[i].token == token) {
+            foundUser=true;
+        }
+    }
+
+    if(foundUser){
+        res.json({
+            username: foundUser.username,
+            password: foundUser.password
+        })
+    }
+    else {
+        res.status(403).send({
+            message:"Invalid username or password"
+        })
+    }
+})
 app.listen(3000, (req,res) => {
     console.log("Listening on port 3000")
 })
