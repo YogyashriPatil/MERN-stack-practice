@@ -10,7 +10,10 @@ const JWT_SECRET = process.env.JWT_SECRET;
 app.use(express.json())
 
 let users=[]
-
+// localhost:3000
+app.get("/", function(req,res) {
+    res.sendFile("./public/index.html")
+})
 app.get("/signup", logger,function(req,res) {
     const username= req.body.username;
     const password = req.body.password;

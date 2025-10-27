@@ -17,6 +17,18 @@
             })
             alert("You are signin ")
         }
+
+        async function signin(){
+            const username = document.getElementById("signup-username")
+            const password = document.getElementById("signup-password")
+
+            await axios.post("http://localhost:3000/signup", {
+                username: username,
+                password: password
+            })
+            alert("You are signin ")
+        }
+
     </script>
 <body>
     <div>
