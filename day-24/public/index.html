@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple full satck application</title>
+</head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+    <script>
+        async function signup(){
+            const username = document.getElementById("signup-username")
+            const password = document.getElementById("signup-password")
+
+            await axios.post("http://localhost:3000/signup", {
+                username: username,
+                password: password
+            })
+            alert("You are signin ")
+        }
+    </script>
+<body>
+    <div>
+        Signup <br>
+        <input id="signup-username" type="text" name="username" placeholder="Enter the username" />
+        <input id="signup-password" type="text" name="password" placeholder="Enter the password" />
+        <button onclick="signup()"> Submit </button>
+    </div>
+    <div>
+        Signin <br>
+        <input type="text" name="username" placeholder="Enter the username" />
+        <input type="text" name="password" placeholder="Enter the password" />
+        <button onclick="signin()"> Submit </button>
+    </div>
+
+    <div>
+        user information 
+        <div id="inforamtion"></div>
+    </div>
+    <div>
+        <button onclick="logout()">Log out</button>
+    </div>
+</body>
+</html>
