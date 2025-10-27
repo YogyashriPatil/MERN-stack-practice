@@ -12,7 +12,7 @@ app.use(express.json())
 let users=[]
 // localhost:3000
 app.get("/", function(req,res) {
-    res.sendFile("./public/index.html")
+    res.sendFile(__dirname + "/public/index.html")
 })
 app.get("/signup", logger,function(req,res) {
     const username= req.body.username;

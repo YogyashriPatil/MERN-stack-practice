@@ -8,8 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
     <script>
         async function signup(){
-            const username = document.getElementById("signup-username")
-            const password = document.getElementById("signup-password")
+            const username = document.getElementById("signup-username").value
+            const password = document.getElementById("signup-password").value
 
             await axios.post("http://localhost:3000/signup", {
                 username: username,
@@ -19,14 +19,15 @@
         }
 
         async function signin(){
-            const username = document.getElementById("signup-username")
-            const password = document.getElementById("signup-password")
+            const username = document.getElementById("signin-username").value
+            const password = document.getElementById("signin-password").value
 
-            await axios.post("http://localhost:3000/signup", {
+            const response = await axios.post("http://localhost:3000/signin", {
                 username: username,
                 password: password
             })
-            alert("You are signin ")
+            localStorage.setItem("token", response.data.token);
+            alert("You are signin")
         }
 
     </script>
@@ -39,11 +40,10 @@
     </div>
     <div>
         Signin <br>
-        <input type="text" name="username" placeholder="Enter the username" />
-        <input type="text" name="password" placeholder="Enter the password" />
+        <input id="signin-username" type="text" name="username" placeholder="Enter the username" />
+        <input id="signin-password" type="text" name="password" placeholder="Enter the password" />
         <button onclick="signin()"> Submit </button>
     </div>
-
     <div>
         user information 
         <div id="inforamtion"></div>
