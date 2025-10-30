@@ -40,7 +40,7 @@ app.post("/signin", async function (req,res) {
 
     if(user) {
         const token = jwt.sign({
-                id: user._id
+                id: user._id.toString
         },jwtpassword)
         res.json({
             token: token
@@ -55,15 +55,46 @@ app.post("/signin", async function (req,res) {
 });
 
 
-app.post("/todo", function (req,res) {
+app.post("/todo", auth , async function (req,res) {
+    const userId= req.userId;
+    const title = req.body.title;
+    const done = req.body.done;
+    await TodoModel.create({
+        title,
+        userId,
+        done
+    })
+    res.json({
+        userId:userId,
+        title : title
+    })
+})
+
+app.post("/todos", auth , async function (req,res) {
+    const userId= req.userId;
+    const todos = await TodoModel.find({
+        userId: userId
+    })
+    res.json({
+        todos
+    })
 
 })
 
-app.post("/todos", function (req,res) {
-
-})
-
-
+function auth (req,res,next) {
+    const token = req.headers.token;
+    const decodeData = jwt.verify(token , jwtpassword)
+    if(decodeData){
+        req.userId = decodeData.id;
+        next();
+    }
+    else
+    {
+        res.status(403).json({
+            message: "Incorrect creadential"
+        })
+    }
+}
 app.listen(port, function (req,res) {
     console.log(`Listening on the port ${port}`);;
 })
