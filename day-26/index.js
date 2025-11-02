@@ -2,6 +2,8 @@
 
 const express = require("express")
 const dotenv = require("dotenv")
+const bcrypt = require("bcrypt")
+
 const {UserModel, TodoModel} = require("./db");
 const mongoose = require("mongoose")
 const jwt = require("jsonwebtoken")
@@ -19,11 +21,20 @@ app.post("/signup", async function (req,res) {
     const password = req.body.password;
     const name = req.body.name;
     
-    await UserModel.create({
-        email: email,
-        password: password,
-        name: name
-    });
+    try {
+        const hashedPassword = await bcrypt.hash(password, 5)
+        console.log(hashedPassword)
+
+        await UserModel.create({
+            email: email,
+            password: hashedPassword,
+            name: name
+        });
+    }
+    catch(e) {
+        
+    }
+
     res.json({
         message : "Your are logged in"
     })
@@ -34,11 +45,18 @@ app.post("/signin", async function (req,res) {
     const password= req.body.password;
 
     const user =await UserModel.findOne({
-        email: email,
-        password: password
+        email: email
     })
 
-    if(user) {
+    if(!user) {
+        res.status(403).json({
+            message : "User does not exist in our db"
+        })
+        return
+    }
+    const passwordMatch = bcrypt.compare(password, express.response.password);
+    
+    if(passwordMatch) {
         const token = jwt.sign({
                 id: user._id.toString
         },jwtpassword)
@@ -49,7 +67,7 @@ app.post("/signin", async function (req,res) {
     else 
     {
         res.status(403).json({
-            message: "Incorrect credential"
+            message: "User not found"
         })
     }
 });

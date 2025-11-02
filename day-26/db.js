@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 
-const schema = mongoose.Schema();
 const ObjectId= mongoose.ObjectId;
 
 const User = new mongoose.Schema({
@@ -8,7 +7,7 @@ const User = new mongoose.Schema({
     password : String,
     name: String
 })
-
+// schema structure of the database 
 const Todo = new mongoose.Schema({
     title: String,
     done: Boolean,
