@@ -1,23 +1,21 @@
-const { Admin }= require("../db")
+const jwt = require("jsonwebtoken")
+const secret = process.env.JWT_SECRET
 
 function adminMiddleware(req,res , next){
-    const username= req.headers.username;
-    const password= req.headers.password;
-
-    Admin.findOne({
-        username:username,
-        password: password
-    })
-    .then(function (value) {
-        if(value){
-            next();
-        }
-        else {
-            res.status(403).json({
-                msg: "User doesn't exist"
+    const token = req.headers.authorization;
+    const words = token.split(" ")
+    const jwToken = words[1]
+    
+    const decoded = jwt.verify(jwToken,secret);
+    if(decoded.username){
+        next();
+    }
+    else 
+    {
+        res.status(403).json({
+                msg: "You are not authenticated"
             })
-        }
-    })
+    }
 }
 
 module.exports = adminMiddleware;
