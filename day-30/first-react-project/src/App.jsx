@@ -4,38 +4,37 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [todos,setTodos] = useState([{
-    title:"Go to gym",
-    description:"Hit the gym",
-    done:false
-  }])
-
-  function addTodo(){
-    let newarray=[]
-    for(let i=0;i<todos.length;i++)
-    {
-      newarray.push(todos[i])
-    }
-    newarray.push({
-      title:document.getElementById("title").value,
-      description:document.getElementById("description").value,
-      done:false
-    })
-    setTodos(newarray)
-  }
   return (
     <div>
-      <input id="title" type='text'></input>
-      <input id="description" type='text'></input>
-      <br />
-      <br />
-      <button onClick={addTodo}>Add Todo</button>
-
-      <br />
-      <br />
-      {JSON.stringify(todos)}
+      <b>
+        hi there
+      </b>
+      <Counter></Counter>
     </div>
   )
 }
 
+function Counter(){
+  const [count , setCount] = useState(0)
+  
+  function IncreaseCount(){
+    setCount(count+1)
+  }
+
+  function decreaseCount(){
+    setCount(count-1)
+  }
+
+  function resetCount(){
+    setCount(0)
+  }
+  return <div>
+    <h1 id='text'>{count}</h1>
+    <button onClick={IncreaseCount}>Increase Count </button>
+    
+    <button onClick={decreaseCount}>decrease Count </button>
+    
+    <button onClick={resetCount}>Reset Count </button>
+  </div>
+}
 export default App
