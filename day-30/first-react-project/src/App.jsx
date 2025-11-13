@@ -28,6 +28,11 @@ function Counter(){
   function resetCount(){
     setCount(0)
   }
+
+  //   function resetCount(){
+  //   setCount(0)
+  // }
+
   return <div>
     <h1 id='text'>{count}</h1>
     <button onClick={IncreaseCount}>Increase Count </button>
