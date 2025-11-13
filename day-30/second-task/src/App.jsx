@@ -17,9 +17,6 @@ function App() {
 function Counter(){
   const [count , setCount] = useState(0)
   
-  setInterval(function(){
-    setCount(count +1 )
-  },1000)
   function IncreaseCount(){
     setCount(count+1)
   }
@@ -38,11 +35,11 @@ function Counter(){
 
   return <div>
     <h1 id='text'>{count}</h1>
-    {/* <button onClick={IncreaseCount}>Increase Count </button>
+    <button onClick={IncreaseCount}>Increase Count </button>
     
     <button onClick={decreaseCount}>decrease Count </button>
     
-    <button onClick={resetCount}>Reset Count </button> */}
+    <button onClick={resetCount}>Reset Count </button>
   </div>
 }
 export default App
