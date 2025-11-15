@@ -1,56 +1,49 @@
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 
 import './App.css'
 
 function App() 
 {
-  let [ counterVisible, setcounterVisible] = useState(true)
-  
-  useEffect(function (){
-    setInterval( function (){
-      setcounterVisible( c => !c)
-    }, 1000)
-  },[])
-  // setInterval(function(){
-  //   setcount(count+1)
-  // },1000)
+  const [count,setCount] = useState(0)
+  const [count2,setCount2] = useState(0)
+  function increase(){
+    setCount(c => c+1)
+  }
+  function decrease(){
+    setCount(c => c-1)
+  }
+
   return (
     <div>
-      {counterVisible && <Counter></Counter>}
+        <Counter count={count} count2={count2} />
+        <button onClick={increase}> Increase count </button>
+        <button onClick={decrease}> decrease count </button>
+        after counter
     </div>
   )
 }
 
-function Counter ()
+function Counter (props)
 {
-  const [ count , setcount]=useState(0)
 
-  useEffect(function (){
-    console.log("hii there")
-    let clock = setInterval( function ()
-    {
-      console.log("inside interval")
-      // setcount(count => count +1)
-      // setcount(function (ctn) {
-      //   return ctn+1;
-      // })
-      setcount(count => count +1)
-    }, 1000)
+  useEffect(function() {
+    console.log("mount");
 
     return function(){
       console.log("unmount")
-      clearInterval(clock)
     }
-  }, [])
+  }, []) //empty os it's run once
 
-  function increaseCount(){
-    setcount(count+1)
-  }
-
+  //waiting for the changing the count
+  useEffect(function() {
+    console.log("count has changed")
+  }, [props.count])
   return <div>
-    <h1 id='text'>{count}</h1>
-    <button onClick={increaseCount}>Increase count</button>
-  </div>
+      Counter1 {props.count} 
+      <br /> <br />
+      Counter2 {props.count2}
+
+    </div>
 }
 
 export default App
