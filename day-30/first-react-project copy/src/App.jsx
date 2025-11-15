@@ -2,35 +2,45 @@ import { useEffect, useState } from 'react'
 
 import './App.css'
 
-function App() {
+function App() 
+{
   let [ counterVisible, setcounterVisible] = useState(true)
-
+  
   useEffect(function (){
     setInterval( function (){
       setcounterVisible( c => !c)
-    }, 5000)
-  }, [])
+    }, 1000)
+  },[])
   // setInterval(function(){
   //   setcount(count+1)
   // },1000)
   return (
     <div>
-      {counterVisible ? <Counter></Counter> : null}
+      {counterVisible && <Counter></Counter>}
     </div>
   )
 }
-function Counter (){
+
+function Counter ()
+{
   const [ count , setcount]=useState(0)
 
   useEffect(function (){
-    setInterval( function (){
+    console.log("hii there")
+    let clock = setInterval( function ()
+    {
+      console.log("inside interval")
       // setcount(count => count +1)
-      setcount(function (ctn) {
-        return ctn+1;
-      })
-
+      // setcount(function (ctn) {
+      //   return ctn+1;
+      // })
       setcount(count => count +1)
     }, 1000)
+
+    return function(){
+      console.log("unmount")
+      clearInterval(clock)
+    }
   }, [])
 
   function increaseCount(){
