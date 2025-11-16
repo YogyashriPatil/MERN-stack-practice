@@ -12,15 +12,30 @@ function App() {
         <div style={{ display: "flex",justifyContent:"center"}}>
           <div>
             <div>
-              <PostComponent />
+              <PostComponent 
+                name={"yogyashri"}
+                followerCount={12009}
+                time={"2m ago"}
+                image={"img"}
+                description={"what about the nature"}/>
               <br />
             </div>
             <div>
-              <PostComponent />
+              <PostComponent 
+                name={"vrushali"}
+                followerCount={12}
+                time={"1 hours age"}
+                image={"ajhdfkadf"}
+                description={"Like some thing interesting"}/>
               <br />
             </div>
             <div>
-              <PostComponent />
+              <PostComponent 
+                name={"kunal"}
+                followerCount={12312}
+                time={"2 days ago"}
+                image={"asdfasdf"}
+                description={"the fanstatic experience that i got to qork on this project"}/>
               <br />
             </div>
           </div>
@@ -31,25 +46,36 @@ function App() {
 
 const style = { width: 200, backgroundColor:"white",borderRadius:10, borderColor:"gray", borderWidth: 1, padding: 20 }
 
-function PostComponent(){
+function PostComponent({name, followerCount, time, image, description}){
   return <div style={style}>
     <div style={{display:"flex"}}>
-      <img src={"https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"} 
+      <img src={image} 
         style={{
           width:60,
           height:60,
           borderRadius:60
       }}/>
       <div style={{fontSize:10, marginLeft:10}}>
-        <b>100xDevs</b>
-        <div>26M+ Followers</div>
-        <div>12m</div>
+        <b>{name}</b>
+        <div>{followerCount}</div>
+        <div style={{display:"flex"}}>
+          <div>{time}</div>
+          <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp3Nt7u1mRQP08L1MPvKzKk_M3MabvtqqqVQ&s"} 
+            style={{width:10, height: 10}}
+          />
+        </div>
       </div>
     </div>      
                                        
     <div style={{fontSize:12}}>
-      what to know how to win big? 
+      {description} 
     </div>
+  </div>
+}
+
+function profileComponent(){
+  return <div>
+    Profile
   </div>
 }
 export default App
