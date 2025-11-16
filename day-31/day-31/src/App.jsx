@@ -16,25 +16,27 @@ function App() {
                 name={"yogyashri"}
                 followerCount={12009}
                 time={"2m ago"}
-                image={"img"}
+                image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhxtx5uOH2FwWtC_-HAnN75PQqBFgfLF9D2w&s"}
                 description={"what about the nature"}/>
               <br />
             </div>
+
             <div>
               <PostComponent 
                 name={"vrushali"}
                 followerCount={12}
                 time={"1 hours age"}
-                image={"ajhdfkadf"}
+                image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhxtx5uOH2FwWtC_-HAnN75PQqBFgfLF9D2w&s"}
                 description={"Like some thing interesting"}/>
               <br />
             </div>
+            
             <div>
               <PostComponent 
                 name={"kunal"}
                 followerCount={12312}
                 time={"2 days ago"}
-                image={"asdfasdf"}
+                image={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhxtx5uOH2FwWtC_-HAnN75PQqBFgfLF9D2w&s"}
                 description={"the fanstatic experience that i got to qork on this project"}/>
               <br />
             </div>
@@ -57,7 +59,7 @@ function PostComponent({name, followerCount, time, image, description}){
       }}/>
       <div style={{fontSize:10, marginLeft:10}}>
         <b>{name}</b>
-        <div>{followerCount}</div>
+        <div>{followerCount} Followers</div>
         <div style={{display:"flex"}}>
           <div>{time}</div>
           <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp3Nt7u1mRQP08L1MPvKzKk_M3MabvtqqqVQ&s"} 
