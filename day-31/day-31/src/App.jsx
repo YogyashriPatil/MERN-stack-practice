@@ -9,6 +9,7 @@ function App() {
   return (
     <div style={{background: "#dfe6e9", 
       height:"100vh"}}>
+        <ToogleMessage />
         <div style={{ display: "flex",justifyContent:"center"}}>
           <div>
             <div>
@@ -57,7 +58,7 @@ function PostComponent({name, followerCount, time, image, description}){
           height:60,
           borderRadius:60
       }}/>
-      <div style={{fontSize:10, marginLeft:10}}>
+      { time !== undefined && <div style={{fontSize:10, marginLeft:10}}>
         <b>{name}</b>
         <div>{followerCount} Followers</div>
         <div style={{display:"flex"}}>
@@ -66,7 +67,7 @@ function PostComponent({name, followerCount, time, image, description}){
             style={{width:10, height: 10}}
           />
         </div>
-      </div>
+      </div>}
     </div>      
                                        
     <div style={{fontSize:12}}>
@@ -78,6 +79,20 @@ function PostComponent({name, followerCount, time, image, description}){
 function profileComponent(){
   return <div>
     Profile
+  </div>
+}
+
+const ToogleMessage = () => {
+  const [isvisible, setisvisible]= useState(false);
+
+  function change(){
+    
+  }
+  return <div>
+      <button onClick={ () => setisvisible(!isvisible)}>
+        ToogleMessage
+      </button>
+      {isvisible && <p> This message is conditionally renderes</p>}
   </div>
 }
 export default App
