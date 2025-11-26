@@ -9,7 +9,7 @@ function App() {
   function increaseCount(){
     setCount(count + 1)
   }
-
+  setInterval(increaseCount,1000)
   return <div>
       <div style={{display:"flex"}}>
         <div style={{background:"red" , borderRadius:20, width:20, height:20, paddingLeft: 10, paddingTop:10}}>
