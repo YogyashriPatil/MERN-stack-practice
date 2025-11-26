@@ -4,35 +4,45 @@ import React from "react";
 
 function App() {
   const [currentTab, setcurrentTab] = useState("Feed");
-
+  const [tabData, settabData] = useState({})
+  const [loading , setloading] = useState(true)
   useEffect( function () {
+    setloading(true)
     console.log("send req to backend to get data for tab " + currentTab)
+    fetch("https://jsonplaceholder.typicode.com/todos/"+currentTab)
+      .then(async res=> {
+        const json = await res.json();
+        settabData(json)
+        setloading(false)
+      })
   },[currentTab])
 
   return <div>
       <button 
-        onClick={()=> { setcurrentTab("Feed")}} 
-        style={{ color:currentTab == "Feed" ? "red" : "black"}}>
-          Feed
+        onClick={()=> { setcurrentTab(1)}} 
+        style={{ color:currentTab == 1 ? "red" : "black"}}>
+          Todo #1
       </button>
 
       <button 
-        onClick={()=> { setcurrentTab("Notification")}} 
-        style={{ color:currentTab == "Notification" ? "red" : "black"}}>
-          Notification
+        onClick={()=> { setcurrentTab(2)}} 
+        style={{ color:currentTab == 2 ? "red" : "black"}}>
+          Todo #2
       </button>
 
       <button 
-        onClick={()=> { setcurrentTab("messages")}}
-        style={{ color:currentTab == "messages" ? "red" : "black"}}>
-          messages
+        onClick={()=> { setcurrentTab(3)}}
+        style={{ color:currentTab == 3 ? "red" : "black"}}>
+         Todo #3
       </button>
 
       <button 
-        onClick={()=> { setcurrentTab("Jobs")}} 
-        style={{ color:currentTab == "Jobs" ? "red" : "black"}}>
-          Jobs
+        onClick={()=> { setcurrentTab(4)}} 
+        style={{ color:currentTab == 4 ? "red" : "black"}}>
+          Todo #4
       </button>
+
+      {loading ? "loading ..." : tabData.title}
     </div>
 }
 
