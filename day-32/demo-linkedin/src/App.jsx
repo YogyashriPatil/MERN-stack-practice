@@ -3,33 +3,37 @@ import './App.css'
 import React from "react";
 
 function App() {
+  const [currentTab, setcurrentTab] = useState("Feed");
 
-  const [count, setcount] = useState(10000000)
+  useEffect( function () {
+    console.log("send req to backend to get data for tab " + currentTab)
+  },[currentTab])
 
-  function increaseCount(){
-    console.log("increase count called "+count)
-    setcount(
-      function(currentValue){
-        return currentValue + 1000000 ;
-      }
-    )
-  }
-  useEffect(() => {
-    console.log("above setinterval")
-    setInterval(increaseCount, 1000);
-  },[])
- 
-  useEffect(()=> {
-    console.log("the count has been updated to "+ count)
-  }, [count])
   return <div>
-      {count}
+      <button 
+        onClick={()=> { setcurrentTab("Feed")}} 
+        style={{ color:currentTab == "Feed" ? "red" : "black"}}>
+          Feed
+      </button>
+
+      <button 
+        onClick={()=> { setcurrentTab("Notification")}} 
+        style={{ color:currentTab == "Notification" ? "red" : "black"}}>
+          Notification
+      </button>
+
+      <button 
+        onClick={()=> { setcurrentTab("messages")}}
+        style={{ color:currentTab == "messages" ? "red" : "black"}}>
+          messages
+      </button>
+
+      <button 
+        onClick={()=> { setcurrentTab("Jobs")}} 
+        style={{ color:currentTab == "Jobs" ? "red" : "black"}}>
+          Jobs
+      </button>
     </div>
 }
 
-function Greeting(props){
-  return <div>
-    hi there {props.name}
-  </div>
-}
 export default App
