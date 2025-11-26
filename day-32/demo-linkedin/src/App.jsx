@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import React from "react";
 
 function App() {
 
@@ -8,7 +9,6 @@ function App() {
   function increaseCount(){
     setCount(count + 1)
   }
-  setInterval(increaseCount, 2000)
 
   return <div>
       <div style={{display:"flex"}}>
@@ -16,7 +16,7 @@ function App() {
           {count}
         </div>
       </div>
-      <img style={{cursor:"pointer"}} src="{}" width={20} />
+      <img style={{cursor:"pointer"}} src={"https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/bell-icon.png"} width={20} />
       <button onClick={increaseCount}>Increases the count</button>
     </div>
 }
