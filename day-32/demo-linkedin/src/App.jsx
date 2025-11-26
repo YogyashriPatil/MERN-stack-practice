@@ -4,17 +4,24 @@ import React from "react";
 
 function App() {
 
-  const [count, setcount] = useState(1)
+  const [count, setcount] = useState(10000000)
 
   function increaseCount(){
     console.log("increase count called "+count)
-    setcount(count+1)
+    setcount(
+      function(currentValue){
+        return currentValue + 1000000 ;
+      }
+    )
   }
   useEffect(() => {
     console.log("above setinterval")
     setInterval(increaseCount, 1000);
   },[])
  
+  useEffect(()=> {
+    console.log("the count has been updated to "+ count)
+  }, [count])
   return <div>
       {count}
     </div>
