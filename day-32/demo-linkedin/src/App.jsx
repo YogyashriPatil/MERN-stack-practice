@@ -4,21 +4,21 @@ import React from "react";
 
 function App() {
 
-  const [count, setCount] = useState(1);
+  const [count, setcount] = useState(0)
 
   function increaseCount(){
-    setCount(count + 1)
+    setcount(count+1)
   }
-  setInterval(increaseCount,1000)
+
+  setInterval(increaseCount, 1000)
   return <div>
-      <div style={{display:"flex"}}>
-        <div style={{background:"red" , borderRadius:20, width:20, height:20, paddingLeft: 10, paddingTop:10}}>
-          {count}
-        </div>
-      </div>
-      <img style={{cursor:"pointer"}} src={"https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/bell-icon.png"} width={20} />
-      <button onClick={increaseCount}>Increases the count</button>
+      {count}
     </div>
 }
 
+function Greeting(props){
+  return <div>
+    hi there {props.name}
+  </div>
+}
 export default App
