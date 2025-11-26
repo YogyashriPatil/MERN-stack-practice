@@ -1,15 +1,24 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <div>
+  const [count, setCount] = useState(1);
+
+  function increaseCount(){
+    setCount(count + 1)
+  }
+  setInterval(increaseCount, 2000)
+
+  return <div>
+      <div style={{display:"flex"}}>
+        <div style={{background:"red" , borderRadius:20, width:20, height:20, paddingLeft: 10, paddingTop:10}}>
+          {count}
+        </div>
+      </div>
+      <img style={{cursor:"pointer"}} src="{}" width={20} />
+      <button onClick={increaseCount}>Increases the count</button>
     </div>
-  )
 }
 
 export default App
