@@ -1,24 +1,29 @@
-import React, { useState } from 'react'
+import React, { Component, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
     return <div>
-      <Mycomponent />
-      <Mycomponent />
+      <ClassCounter />
     </div>
 }
-const componentStyle= {
-  backgroundColor: 'red',
-  color:'white',
-  padding: 10,
-  borderRadius: '10px'
+
+class ClassCounter extends Component{
+  state = { count : 0}
+
+  increment = () => {
+    this.setState({count : this.state.count + 1});
+  };
+
+  render() {
+    return (
+      <div>
+        <p>Count : {this.state.count} </p>
+        <button onClick={this.increment}>Increment</button>
+      </div>
+    )
+  }
 }
-function Mycomponent()
-{
-  return <div style={componentStyle}>
-    hi there
-  </div>
-}
+
 export default App
