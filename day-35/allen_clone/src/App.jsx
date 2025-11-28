@@ -21,7 +21,18 @@ function App() {
 }
 
 function Layout(){
-  return <div style={{height: "100vh"}}>
+  return <div style={{height: "100vh", background:'green'}}>
+    <Header />
+    <div style={{height:"90vh", background:'red'}}>
+      <Outlet />
+    </div> 
+
+    footer
+  </div>
+}
+
+function Header(){
+  return <div>
     <Link to='/'>
       Allen 
     </Link> | 
@@ -31,12 +42,6 @@ function Layout(){
     <Link to='/neet/online-coaching-class-12'>
       class 12
     </Link>
-
-    <div style={{height:"90vh"}}>
-      <Outlet />
-    </div> 
-
-    footer
   </div>
 }
 function ErrorPage(){
