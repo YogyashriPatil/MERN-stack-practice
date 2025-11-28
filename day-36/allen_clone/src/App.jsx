@@ -3,17 +3,22 @@ import './App.css'
 
 function App() {
 
-  const inputRef = useRef();
-
-  function inputHandle(){
-    inputRef.current.Focus()
+  const [count, setCount] =useState(1)
+  // const timer = useRef();
+  // let timer = 0;
+  function startClock(){
+    timer = setInterval(function (){
+      setCount(c => c+1)
+    },1000)
   }
 
+  function stopClock(){
+    clearInterval(timer)
+  }
   return <div>
-      Sign Up <br />
-        <input ref={inputRef} type={"text"}></input> <br />
-        <input type={"text"}></input> <br />
-        <button onClick={inputHandle}>Submit</button>
-      </div>
+      {count} <br />
+      <button onClick={startClock}> Start </button>
+      <button onClick={stopClock}> Stop </button>
+    </div>
 }
 export default App
