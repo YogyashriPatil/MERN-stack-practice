@@ -5,15 +5,7 @@ import './App.css'
 function App() {
   return <div>
       <BrowserRouter>
-        <Link to='/'>
-          Allen 
-        </Link> | 
-        <Link to='/neet/online-coaching-class-11'>
-          Class 11
-        </Link> |  
-        <Link to='/neet/online-coaching-class-12'>
-          class 12
-        </Link>
+        
 
         <Routes>
           <Route path='/' element={<Layout />}>
@@ -29,9 +21,22 @@ function App() {
 }
 
 function Layout(){
-  return <div>
-    hi there 
-    <Outlet />
+  return <div style={{height: "100vh"}}>
+    <Link to='/'>
+      Allen 
+    </Link> | 
+    <Link to='/neet/online-coaching-class-11'>
+      Class 11
+    </Link> |  
+    <Link to='/neet/online-coaching-class-12'>
+      class 12
+    </Link>
+
+    <div style={{height:"90vh"}}>
+      <Outlet />
+    </div> 
+
+    footer
   </div>
 }
 function ErrorPage(){
