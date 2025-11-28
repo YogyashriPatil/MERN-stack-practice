@@ -4,16 +4,23 @@ import './App.css'
 function App() {
 
   const [count, setCount] =useState(1)
+  const [timer,settimer] = useState(0)
   // const timer = useRef();
   // let timer = 0;
   function startClock(){
-    timer = setInterval(function (){
+    let value = setInterval(function (){
       setCount(c => c+1)
     },1000)
+    settimer(value)
   }
 
   function stopClock(){
+    console.log(timer)
     clearInterval(timer)
+  }
+
+  function reinitialize(){
+    
   }
   return <div>
       {count} <br />
