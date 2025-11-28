@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {BrowserRouter, Routes, Route, Link, useNavigate} from "react-router-dom"
+import {BrowserRouter, Routes, Route, Link, useNavigate, Outlet} from "react-router-dom"
 import './App.css'
 
 function App() {
@@ -16,17 +16,24 @@ function App() {
         </Link>
 
         <Routes>
-          <Route path='/neet/online-coaching-class-11' element={<Class11Program />} />
-          <Route path='/neet/online-coaching-class-12' element={<Class12Program />} />
-          <Route path='/' element={<Landing />} />
-          <Route path='*' element={< ErrorPage />} />
-
+          <Route path='/' element={<Layout />}>
+            <Route path='/neet/online-coaching-class-11' element={<Class11Program />} />
+            <Route path='/neet/online-coaching-class-12' element={<Class12Program />} />
+            <Route path='/' element={<Landing />} />
+            <Route path='*' element={< ErrorPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
 
     </div>
 }
 
+function Layout(){
+  return <div>
+    hi there 
+    <Outlet />
+  </div>
+}
 function ErrorPage(){
   return <div>
     Sorry page not found
