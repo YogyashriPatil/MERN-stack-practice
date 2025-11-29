@@ -2,27 +2,27 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  return <div>
-      <LightBulb />
-  </div>
-}
-
-function LightBulb(){
   
   const [bulbOn, setbulbOn] = useState(true)
   return <div>
-    <BulbState bulbOn={bulbOn} />
-    <ToggleBulbState bulbOn={bulbOn} setbulbOn={setbulbOn} />
+      <Light bulbOn={bulbOn} setbulbOn={setbulbOn} />
   </div>
 }
 
-function BulbState({bulbOn}){
+function Light({bulbOn, setbulbOn}){
+  return <div>
+    <LightBulb bulbOn={bulbOn} />
+    <LightSwitch bulbOn={bulbOn} setbulbOn={setbulbOn} />
+  </div>
+}
+
+function LightBulb({bulbOn}){
   return <div>
     {bulbOn ? "Bulb on ": "Bulb off"}
   </div>
 }
 
-function ToggleBulbState({bulbOn,setbulbOn}){
+function LightSwitch({bulbOn,setbulbOn}){
   function toggle(){
     setbulbOn(!bulbOn)
   }
