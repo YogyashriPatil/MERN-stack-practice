@@ -5,7 +5,13 @@ import { useFetch} from './hooks/useFetch';
 
 function App() {
   const [currentPost, setcurrentPost] = useState(1);
-  const { postTitle } = useFetch("https://jsonplaceholder.typicode.com/posts/"+currentPost);
+  const { postTitle , loading} = useFetch("https://jsonplaceholder.typicode.com/posts/"+currentPost, 10);
+
+  if(loading){
+    return <div>
+      Loading  . . .
+    </div>
+  }
   return <div>
     <button onClick={() => setcurrentPost(1)}>1</button>
     <br /> <br />

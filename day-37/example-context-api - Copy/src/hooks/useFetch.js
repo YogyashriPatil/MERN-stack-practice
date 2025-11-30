@@ -16,21 +16,26 @@ export function usePostTitle(){
     return post.title;
 }
 
-
-export function useFetch(url){
+export function useFetch(url, timeout){
     const [finalData, setfinalData] = useState({})
-    
+    const [loading, setloading] = useState(true);
     async function getPosts() {
+        setloading(true)
         const response= await fetch(url);
         console.log(response)
         const json = await response.json();
         setfinalData(json);
-    }
-    
+        setloading(false)
+    }    
     useEffect(() => {
         getPosts();
     },[])
+
+    useEffect(() => {
+        setInterval(getPosts, timeout * 1000) //cleanu
+    })
     return {
-        finalData
+        finalData,
+        loading
     };
 }
