@@ -1,19 +1,24 @@
+import { useState } from 'react';
 import './App.css'
-import { usePostTitle } from './hooks/useFetch';
+import { useFetch} from './hooks/useFetch';
 // custome hook
 
 function App() {
-  const postTitle = usePostTitle();
+  const [currentPost, setcurrentPost] = useState(1);
+  const { postTitle } = useFetch("https://jsonplaceholder.typicode.com/posts/"+currentPost);
   return <div>
-    {postTitle}
+    <button onClick={() => setcurrentPost(1)}>1</button>
+    <br /> <br />
+    <button onClick={() => setcurrentPost(2)}>2</button>
+    <br /><br />
+    <button onClick={() => setcurrentPost(3)}>3</button>
+    <br /><br />
+    <button onClick={() => setcurrentPost(4)}>4</button>
+    <br /><br />
+    <button onClick={() => setcurrentPost(5)}>5</button>
+    <br /><br />
+    {JSON.stringify(postTitle)}
   </div>
 }
 
-// function Counter(){
-//   const { count, increaseCount} = useCounter();
-//   return <div>
-//       {count}
-//       <button onClick={increaseCount}>Increase {count}</button>
-//   </div>
-//}
 export default App
