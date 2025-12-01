@@ -1,44 +1,43 @@
-import { memo, useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css'
+import { RecoilRoot } from 'recoil' ;
 // custome hook
 // npm i recoil
 function App() {
-  return <div>
-      <Counter />
-    </div>   
+ 
+  return <RecoilRoot>
+    <Counter />
+  </RecoilRoot>
 }
 function Counter(){
-    const [Count, setCount] = useState(0)
-
-  useEffect(() => {
-    setInterval(() => setCount(c => c +1 ), 
-    10000)
-    // setCount(c => c +1 )
-  }, [Count])
-
+  
   return <div>
     <CurrentCount />
     <Increase />
     <Decrease  />
   </div>
 }
-const CurrentCount = memo(function () {
+
+function CurrentCount() {
+  const count = useRecoilValue(counterAtom)
   return <div>
-    1
+    {count}
   </div>
 }
-)
-
 function Increase(){
-  
+  const setCount = useSetRecoilState(counterAtom)
+
   function increase(){
+    setCount(c => c+ 1)
   }
   return <div>
     <button onClick={increase}>Increase</button>
   </div>
 }
 function Decrease({setCount}){
+  const setCount = useSetRecoilState(counterAtom)
   function decrease(){
+    setCount(c => c - 1)
   }
   return <div>
     <button onClick={decrease}>Decrease</button>
