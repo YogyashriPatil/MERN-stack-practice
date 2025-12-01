@@ -12,9 +12,16 @@ function App() {
 function Counter(){
   const [count, setCount] =useState(0);
   return <div>
-    {count}
+    {/* {count} */}
+    <CurrentCount count={count}/>
     <Increase setCount={setCount}/>
     <Decrease setCount={setCount} />
+  </div>
+}
+
+function CurrentCount({count}) {
+  return <div>
+    {count}
   </div>
 }
 function Increase({setCount}){
