@@ -1,32 +1,30 @@
 import { useState } from 'react';
 import './App.css'
-import { RecoilRoot } from 'recoil' ;
+import { usePrev } from './hooks/usePrev';
 // custome hook
-// npm i recoil
+
 function App() {
  
-  return <RecoilRoot>
+  return <div>
     <Counter />
-  </RecoilRoot>
+  </div>
 }
 function Counter(){
-  
+  const [count, setCount] =useState(0);
   return <div>
-    <CurrentCount />
-    <Increase />
-    <Decrease  />
+    {/* {count} */}
+    <CurrentCount count={count}/>
+    <Increase setCount={setCount}/>
+    <Decrease setCount={setCount} />
   </div>
 }
 
-function CurrentCount() {
-  const count = useRecoilValue(counterAtom)
+function CurrentCount({count}) {
   return <div>
     {count}
   </div>
 }
-function Increase(){
-  const setCount = useSetRecoilState(counterAtom)
-
+function Increase({setCount}){
   function increase(){
     setCount(c => c+ 1)
   }
@@ -35,7 +33,7 @@ function Increase(){
   </div>
 }
 function Decrease({setCount}){
-  const setCount = useSetRecoilState(counterAtom)
+
   function decrease(){
     setCount(c => c - 1)
   }
