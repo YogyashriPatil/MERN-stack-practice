@@ -1,17 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { useDebounce } from './hook/useDebounce'
 
 function App() {
-
-  function sendDataToBackend(){
-    fetch("api.amazon.com/search/")
+  const [inputVal, setinputVal] = useState("")
+  const debouncedValue = useDebounce(inputVal)
+  function change(e)
+  {
+    setinputVal(e.target.value)
   }
 
-  const debouncedFn = useDebounce(sendDataToBackend)
+  useEffect(() => {
+    console.log("expensive operation ")
+  }, [inputVal])
   return (
     <div>
-      <input type='text' onChange={debouncedFn} ></input>
+      <input type='text' id='input' onChange={change} ></input>
     </div>
   )
 }
