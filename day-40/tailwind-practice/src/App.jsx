@@ -5,12 +5,25 @@ function App() {
 
   return (
     <div>
-      <h1 class="text-3xl font-bold underline bg-red-400">
-        Hello world!
-      </h1>
-      hi there
+      <Test />
     </div>
   )
 }
-
+function Test(){
+  return  <>
+    {/* <div style={{display:'flex', justifyContent:'space-between'}}> */}
+    {/* <div className='flex justify-between'> */}
+    <div class='flex justify-between' >
+      <div style={{background:'red'}}>
+        Hi there 1
+      </div>
+      <div style={{background:'blue'}}>
+        Hi there 2
+      </div>
+      <div style={{background:'green'}}>
+        Hi there 2
+      </div>
+    </div>
+  </>
+}
 export default App
