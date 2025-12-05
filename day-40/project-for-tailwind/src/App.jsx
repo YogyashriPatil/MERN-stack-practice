@@ -11,7 +11,7 @@ function App() {
       {/* <br />
       <Input type="text" placeholder="userName" />
       <Button disabled={false} Children={"Sign up "}>Sign up</Button> */}
-      <Otp />
+      <Otp number={6} />
     </div>
   )
 }
