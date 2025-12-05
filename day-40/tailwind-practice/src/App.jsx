@@ -22,21 +22,21 @@ function App() {
 
 function Responsive(){
   return <>
-    <div className='sm:bg-blue-300 bg-red-300'>
+    <div className='md:bg-amber-400 sm:bg-blue-300 bg-red-300'>
       hi there
     </div>
   </>
 }
 function GridLayout(){
     return  <>
-    <div class='grid grid-cols-12' >
-      <div className='bg-amber-500'>
+    <div class='grid grid-cols-1 sm:grid-cols-12' >
+      <div className='col-span-12 sm:col-span-5 bg-amber-500'>
         Hi there 1
       </div>
-      <div className='bg-red-500 col-span-6'>
+      <div className='col-span-12 sm:col-span-3 bg-red-500 col-span-6'>
         Hi there 2
       </div>
-      <div className='bg-green-500 col-span-2'>
+      <div className='col-span-12 sm:col-span-2 bg-green-500 col-span-2'>
         Hi there 2
       </div>
     </div>
