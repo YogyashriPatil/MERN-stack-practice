@@ -3,7 +3,7 @@ export const Button = ({
     Children , 
     onClick
 }) => {
-    return <span onClick={onClick} className={`rounded-2xl px-32 py-8 text-white cursor-pointer ${disabled ? "bg-blue-200" : "bg-green-400"}`}>
+    return <span onClick={onClick} className={`rounded-2xl px-16 py-5 text-white cursor-pointer ${disabled ? "bg-blue-500" : "bg-black"}`}>
         {Children}
     </span>
 }
