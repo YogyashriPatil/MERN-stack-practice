@@ -1,1 +1,1 @@
-{"root":["./fun.ts","./index.ts"],"version":"5.9.3"}
+{"root":["./fun.d.ts","./index.d.ts","./src/fun.ts","./src/index.ts"],"version":"5.9.3"}
