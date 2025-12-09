@@ -1,1 +1,1 @@
-{"root":["./src/abstract-class.ts","./src/function-interface.ts","./src/interface-class.ts","./src/interface-prop.ts","./src/interface-union.ts","./src/interface.ts","./src/type-ts.ts"],"version":"5.9.3"}
+{"root":["./src/abstract-class.ts","./src/function-interface.ts","./src/interface-class.ts","./src/interface-prop.ts","./src/interface-union.ts","./src/interface.ts","./src/type-ts.ts","./src/type-union.ts"],"version":"5.9.3"}

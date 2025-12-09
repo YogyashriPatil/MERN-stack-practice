@@ -8,7 +8,7 @@ type Manager = {
     department: string
 }
 
-type TeamLead = Employee & Manager
+type TeamLead = Employee | Manager
 
 let e: Employee= {
     name: "yogyashri",
@@ -22,6 +22,6 @@ let m: Manager= {
 
 let t: TeamLead = {
     name:"khushi",
-    startDate:"16-04-3455",
-    department:"pya"
+    startDate:"16-04-3455"
 }
+console.log(e, m, t)
