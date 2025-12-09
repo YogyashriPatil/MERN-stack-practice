@@ -26,6 +26,6 @@ class Manager implements people{
 
 let user = new Manager("yogyashri", 21)
 console.log(user.name)
-console.log(user.greet)
+console.log(user.greet())
 // let greeting = person.greet();
 // console.log(greeting)
