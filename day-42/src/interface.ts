@@ -7,9 +7,17 @@ interface UserType {
     age: number
 }
 
+function isLegal(user : UserType){
+    if(user.age > 18)
+        return true
+    else
+        return false
+}
+
 let user : UserType= {
     firstname:"yogyashri",
     lastname:"patil",
     age:21
 }
 console.log(user)
+console.log(isLegal(user))
