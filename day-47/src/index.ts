@@ -20,11 +20,20 @@ app.post("/signup",async (req,res) => {
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
-    const insertQuery =  `INSERT INTO users (username , email , password) values ('${username}','${email}','${password}');`
-    const response = await pgClient.query(insertQuery)
-    if(response){
+    try{
+        // const insertQuery =  `INSERT INTO users (username , email , password) values ('${username}','${email}','${password}');`
+        const insertQuery =  `INSERT INTO users (username , email , password) values ($1,$2,$3);`
+
+        const response = await pgClient.query(insertQuery,[username,password,email])
+        if(response){
+            res.json({
+                message:"you are signed up"
+            })
+        }
+    }
+    catch(e){
         res.json({
-            message:"you are signed up"
+            message: e + "error"
         })
     }
 })
