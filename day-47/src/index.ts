@@ -27,7 +27,7 @@ app.post("/signup",async (req,res) => {
     const pincode = req.body.pincode;
     try{
         // const insertQuery =  `INSERT INTO users (username , email , password) values ('${username}','${email}','${password}');`
-        const insertQuery =  `INSERT INTO users (username , email , password) values ($1,$2,$3);`
+        const insertQuery =  `INSERT INTO users (username , email , password) values ($1,$2,$3) RETURNING id;`
         const addressQuery = `INSERT INTO address (city , country , street, pincode,userId) VALUES ($1,$2,$3,$4,$5);`
         
         await pgClient.query("BEGIN;")
@@ -47,12 +47,25 @@ app.post("/signup",async (req,res) => {
             })
         }
     }
+
+
     catch(e){
         res.json({
             message: e + "error"
         })
     }
 })
+
+app.get("/metadata",async (req,res) => {
+    const id = req.query.id;
+
+    const query1 = `SELECT * FROM users WHERE id = ${id}`;
+    const response1 = await pgClient.query(query1)
+
+    res.json({
+        user: response1.rows[0]
+    })
+} )
 
 app.post("/transaction", (req,res) => {
 
