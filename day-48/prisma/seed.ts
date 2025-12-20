@@ -8,21 +8,15 @@ async function createUser() {
             username: "yogi",
             password:"123",
             age: 21,
-            city: "delhi"
+            city: "delhi",
+            todos:{
+                create:{
+                    description:"adsf",
+                    title:"Asd",
+                    done : false
+                }
+            }
         }
     })    
 }
-
-
-
-async function findUser() {
-    const user = await client.user.findFirst({
-        where:{
-            id: 1
-        },
-        include:{
-            todos: true
-        }
-    })    
-    console.log(user?.password)
-}
+createUser()
