@@ -29,11 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {route == "signin" || route == "signup" ? <div>Header</div>}
         <div>Hi there </div>
         <div className="border-b p-4">Quizio</div>
         {children}
-        {route == "signin" || route == "signup" ? <div>Footer</div>}
       </body>
     </html>
   );
