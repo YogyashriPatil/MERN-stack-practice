@@ -6,8 +6,8 @@ export default function(){
         Sign  in page <br />
         <input></input>
         <input></input>
-        <button onClick={() =>{
-            axios.post("http://localhost:3000/api/signin",{
+        <button onClick={async () =>{
+            const res = await axios.post("http://localhost:3000/api/signin",{
                 username:"asd",
                 password:"asdasf"
             })

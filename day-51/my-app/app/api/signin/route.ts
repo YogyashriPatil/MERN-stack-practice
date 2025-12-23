@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import { NextRequest, NextResponse } from "next/server"
 
-export function POST(req:NextRequest){
+export async function POST(req:NextRequest){
     const body = await req.json();
     const username = body.username;
     const password = body.password;
